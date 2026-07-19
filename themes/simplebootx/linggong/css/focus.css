@@ -1,0 +1,166 @@
+/*lun bo*/
+
+.index_focus {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.index_focusn {
+    width: 1920px;
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    margin-left: -960px;
+    height: 100%;
+    z-index: 99;
+}
+
+.index_focus .bd li {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    z-index: 999;
+}
+
+.index_focus .slide_nav {
+    position: absolute;
+    bottom: 23px;
+    left: 50%;
+    margin-left: -36px;
+    z-index: 9998;
+}
+
+.index_focus .slide_nav a {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    float: left;
+    margin-right: 9px;
+    margin-left: 9px;
+    background: url(../images/yao_hui.png) no-repeat center center;
+}
+
+.index_focus_post {
+    z-index: 10;
+}
+
+.index_focus .pic {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.index_focus .pic:hover {
+    text-decoration: none;
+}
+
+.index_focus .slide_nav li:hover,
+.index_focus .slide_nav .on {
+    text-decoration: none;
+    background: url(../images/yao_1.png) no-repeat center center;
+}
+
+.index_focus_pre,
+.index_focus_next {
+    display: block;
+    position: absolute;
+    top: 55%;
+    margin-top: -37px;
+    width: 38px;
+    height: 75px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.index_focus_pre {
+    left: 6%;
+    background: url(../images/header_l.png) no-repeat;
+}
+
+.index_focus_next {
+    right: 6%;
+    background: url(../images/header_r.png) no-repeat;
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1219px) {
+    .index_focus {
+        height: 599px;
+    }
+    .index_focusn img {
+        width: 80%;
+    }
+}
+
+.carousel,
+.clear2 {
+    display: none;
+}
+
+@media screen and (max-width: 999px) {
+    .index_focus {
+        display: none;
+    }
+    .index_focus2 {
+        display: none;
+    }
+    .carousel {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        display: block;
+    }
+    .carousel ul {
+        width: 100%;
+        height: 100%;
+    }
+    .carousel ul li {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .carousel ul li img {
+        width: 100%;
+        vertical-align: middle;
+    }
+    .carousel ol {
+        position: absolute;
+        z-index: 2;
+        width: 80px;
+        height: 5px;
+        bottom: 13px;
+        left: 52%;
+        -webkit-transform: translate3d(-50%, 0, 0);
+    }
+    .carousel ol li {
+        float: left;
+        width: 10px;
+        height: 10px;
+        margin-right: 10px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        -webkit-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }
+    .carousel ol li.cur {
+        width: 10px;
+        background: #008fd7;
+    }
+    .carousel ol li:last-child {
+        margin: 0;
+    }
+}
+
+/*# sourceMappingURL=focus.css.map */
