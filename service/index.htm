@@ -129,7 +129,7 @@
 <div class="header_top fix">
   <div class="wp fix">
     <p class="l"> <span> +86 317 8091 666 </span> <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn </a> </p>
-    <form action="/index.php/Search/index/index.html" class="header_form fix r">
+    <form action="https://www.google.com/search" class="header_form fix r" onsubmit="return qhSearch(this)">
       <input type="submit" class="sub">
       <input type="text" placeholder="Search..." class="tex" name="q">
     </form>
@@ -241,7 +241,7 @@
 
             <div class="cobiao2"></div>
 
-            <form class="coxin" action="/index.php/api/guestbook/addmsg2.html" method="post" onsubmit="return submitMsg2()">
+            <form class="coxin" action="mailto:info@cangzhou-qinghong-foundry.com.cn" method="post" onsubmit="return qhInquiry(this)" enctype="text/plain">
 
                 <div class="int1">
 
@@ -273,7 +273,6 @@
 
                 <div class="int3">
 
-                    <input type="text" name="verify" id="captchb" placeholder="CAPTCHA">
 
                 </div>
 
@@ -281,7 +280,6 @@
                 
 
 
-<img src="../index-1.php?g=api&m=checkcode&a=index&length=4&font_size=16&width=117&height=34&use_noise=0&use_curve=0&id=11" onclick="this.src='/index.php?g=api&m=checkcode&a=index&length=4&font_size=16&width=117&height=34&use_noise=0&use_curve=0&id=11&time='+Math.random();" style="cursor:pointer; " class="yanzheng">
 
 
 
@@ -290,10 +288,8 @@
                 <div class="clear"></div>
 
                 <input type="hidden" id="type" name="type" value="2">
-
-                <input type="hidden" name="verifyid" value="11">
-
-            </form>
+<p style="margin-top:12px;font-size:13px;color:#666;">Or e-mail us directly at <a href="mailto:info@cangzhou-qinghong-foundry.com.cn">info@cangzhou-qinghong-foundry.com.cn</a></p>
+</form>
 
         </section>
 
@@ -320,8 +316,8 @@
     <div class="footer_left">
       <div class="title"> Navigation</div>
       <ul class="ftx_ul2">
-        <li> <a href="../index.htm"> Home </a
-        <li> <a href="../about-us/index.htm"> A@cangzhou-qinghong-foundry.com.cn="../products@cangzhou-qinghong-foundry.com.cni><li> <a href="../news/index.htm"> News </a> </li><li> <a href="../Process/index.htm"> Process </a> </li><li> <a href="index.htm"> Service </a> </li><li> <a href="../contact-us/index.htm"> Contact Us </a> </li>      </ul>
+        <li> <a href="../index.htm"> Home </a> </li>
+        <li> <a href="../about-us/index.htm"> About Us </a> </li><li> <a href="../products/index.htm"> Products </a> </li><li> <a href="../news/index.htm"> News </a> </li><li> <a href="../Process/index.htm"> Process </a> </li><li> <a href="../service/index.htm"> Service </a> </li><li> <a href="../contact-us/index.htm"> Contact Us </a> </li>      </ul>
     </div>
     <div class="footer_center">
       <div class="title"> <a href="../contact-us/index.htm"> Contact Us </a> </div>
@@ -331,7 +327,7 @@
         <li> Fax: +86 317 8095 688 </li>
         <li> E-mail: <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> E-mail: <a href="mailto:ruqiang.li@cangzhou-qinghong-foundry.com.cn"> ruqiang.li@cangzhou-qinghong-foundry.com.cn</a> </li>
-        <li> E-mail: <a href="mailto:baoqing.zhao@cangzhou-qinghong-foundry.com.cn"> baoqing.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
+        <li> E-mail: <a href="mailto:info@cangzhou-qinghong-foundry.com.cn"> info@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> Add: Xinjianboli Village, Wangwu Town, Botou City, Hebei China </li>
       </ul>
     </div>
@@ -401,6 +397,48 @@ var proarttitle = 'Service';
 </script>
 
 
+
+<script>
+function qhInquiry(f) {
+  var d = {}, pro = [], els = f.elements, i, e;
+  for (i = 0; i < els.length; i++) {
+    e = els[i];
+    if (!e.name) continue;
+    if (e.type === 'checkbox') { if (e.checked) pro.push(e.value); continue; }
+    if (e.type === 'submit' || e.type === 'button' || e.type === 'hidden') continue;
+    d[e.name] = String(e.value || '').replace(/[\r\n]+/g, ' ').trim();
+  }
+  if (!d.email && !d.full_name) {
+    alert('Please enter your name and e-mail address.');
+    return false;
+  }
+  var lines = [];
+  if (d.full_name) lines.push('Name: ' + d.full_name);
+  if (d.company_name) lines.push('Company: ' + d.company_name);
+  if (d.email) lines.push('E-mail: ' + d.email);
+  if (d.tel) lines.push('Tel: ' + d.tel);
+  if (d.from_country) lines.push('Country: ' + d.from_country);
+  lines.push('Page: ' + document.title + ' (' + location.href + ')');
+  if (pro.length) lines.push('Products of interest: ' + pro.join(', '));
+  lines.push('');
+  if (d.msg) lines.push(d.msg);
+  var subject = pro.length ? 'Product inquiry - ' + document.title : 'Website inquiry - ' + document.title;
+  window.location.href = 'mailto:info@cangzhou-qinghong-foundry.com.cn?subject=' + encodeURIComponent(subject) +
+                         '&body=' + encodeURIComponent(lines.join('\n'));
+  return false;
+}
+</script>
+
+<script>
+function qhSearch(f) {
+  var i = f.querySelector('input[name="q"]');
+  var q = i ? i.value.replace(/^\s+|\s+$/g, '') : '';
+  if (!q) return false;
+  window.location.href = 'https://www.google.com/search?q=' +
+    encodeURIComponent('site:cangzhou-qinghong-foundry.com.cn ' + q);
+  return false;
+}
+</script>
 </body>
 
 </html>

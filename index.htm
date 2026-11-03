@@ -123,7 +123,7 @@
 <div class="header_top fix">
   <div class="wp fix">
     <p class="l"> <span> +86 317 8091 666 </span> <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn </a> </p>
-    <form action="/index.php/Search/index/index.html" class="header_form fix r">
+    <form action="https://www.google.com/search" class="header_form fix r" onsubmit="return qhSearch(this)">
       <input type="submit" class="sub">
       <input type="text" placeholder="Search..." class="tex" name="q">
     </form>
@@ -317,7 +317,7 @@
   <section class="wp">
     <div class="m1tit "> <a href="contact-us/index.htm"> <span> Get In Touch</span> </a> </div>
     <a href="contact-us/index.htm" class="m5_p"> We are pleased to hear from you. Your request will be forwarded to correct person once it has been submitted. </a>
-    <form class="cuxin" action="/index.php/api/guestbook/addmsg2.html" method="post" onsubmit="return submitMsg1()">
+    <form class="cuxin" action="mailto:info@cangzhou-qinghong-foundry.com.cn" method="post" onsubmit="return qhInquiry(this)" enctype="text/plain">
       <div class="xinl">
         <div class="int1 xing">
           <input type="text" placeholder="Name" name="full_name" id="full_namea" class="curen">
@@ -332,27 +332,16 @@
         </div>
       </div>
       <div class="clear"></div>
-      <div class="xinl">
-        <div class="int1">
-          <input type="text" class="int4" placeholder="CAPTCHA" name="verify" id="captcha">
-                    
-
-
-<img src="index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=176&height=51&use_noise=0&use_curve=0&id=10" onclick="this.src='/index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=176&height=51&use_noise=0&use_curve=0&id=10&time='+Math.random();" style="cursor:pointer; " class="cuyanzheng">
-
-
- </div>
-      </div>
-      <input type="hidden" id="type" name="type" value="1">
-      <input type="hidden" name="verifyid" value="10">
-      <div class="xinr">
+<input type="hidden" id="type" name="type" value="1">
+<div class="xinr">
         <div class="int3">
           <input type="submit" class="int5" value="SEND MESSAGE">
           <div class="clear"></div>
         </div>
       </div>
       <div class="clear"></div>
-    </form>
+<p style="margin-top:12px;font-size:13px;color:#666;">Or e-mail us directly at <a href="mailto:info@cangzhou-qinghong-foundry.com.cn">info@cangzhou-qinghong-foundry.com.cn</a></p>
+</form>
   </section>
 </main>
 
@@ -387,7 +376,7 @@
         <li> Fax: +86 317 8095 688 </li>
         <li> E-mail: <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> E-mail: <a href="mailto:ruqiang.li@cangzhou-qinghong-foundry.com.cn"> ruqiang.li@cangzhou-qinghong-foundry.com.cn</a> </li>
-        <li> E-mail: <a href="mailto:baoqing.zhao@cangzhou-qinghong-foundry.com.cn"> baoqing.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
+        <li> E-mail: <a href="mailto:info@cangzhou-qinghong-foundry.com.cn"> info@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> Add: Xinjianboli Village, Wangwu Town, Botou City, Hebei China </li>
       </ul>
     </div>
@@ -459,5 +448,47 @@ var proarttitle = '';
 
 </script>
 
+
+<script>
+function qhInquiry(f) {
+  var d = {}, pro = [], els = f.elements, i, e;
+  for (i = 0; i < els.length; i++) {
+    e = els[i];
+    if (!e.name) continue;
+    if (e.type === 'checkbox') { if (e.checked) pro.push(e.value); continue; }
+    if (e.type === 'submit' || e.type === 'button' || e.type === 'hidden') continue;
+    d[e.name] = String(e.value || '').replace(/[\r\n]+/g, ' ').trim();
+  }
+  if (!d.email && !d.full_name) {
+    alert('Please enter your name and e-mail address.');
+    return false;
+  }
+  var lines = [];
+  if (d.full_name) lines.push('Name: ' + d.full_name);
+  if (d.company_name) lines.push('Company: ' + d.company_name);
+  if (d.email) lines.push('E-mail: ' + d.email);
+  if (d.tel) lines.push('Tel: ' + d.tel);
+  if (d.from_country) lines.push('Country: ' + d.from_country);
+  lines.push('Page: ' + document.title + ' (' + location.href + ')');
+  if (pro.length) lines.push('Products of interest: ' + pro.join(', '));
+  lines.push('');
+  if (d.msg) lines.push(d.msg);
+  var subject = pro.length ? 'Product inquiry - ' + document.title : 'Website inquiry - ' + document.title;
+  window.location.href = 'mailto:info@cangzhou-qinghong-foundry.com.cn?subject=' + encodeURIComponent(subject) +
+                         '&body=' + encodeURIComponent(lines.join('\n'));
+  return false;
+}
+</script>
+
+<script>
+function qhSearch(f) {
+  var i = f.querySelector('input[name="q"]');
+  var q = i ? i.value.replace(/^\s+|\s+$/g, '') : '';
+  if (!q) return false;
+  window.location.href = 'https://www.google.com/search?q=' +
+    encodeURIComponent('site:cangzhou-qinghong-foundry.com.cn ' + q);
+  return false;
+}
+</script>
 </body>
 </html>

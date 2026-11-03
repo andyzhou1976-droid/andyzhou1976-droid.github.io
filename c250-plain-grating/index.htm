@@ -160,7 +160,7 @@ C250  PLAIN GRATING, QDPK-004, HMCC40EN2, HMCC50EN2, HMCC620EN2 Supplier
 <div class="header_top fix">
   <div class="wp fix">
     <p class="l"> <span> +86 317 8091 666 </span> <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn </a> </p>
-    <form action="/index.php/Search/index/index.html" class="header_form fix r">
+    <form action="https://www.google.com/search" class="header_form fix r" onsubmit="return qhSearch(this)">
       <input type="submit" class="sub">
       <input type="text" placeholder="Search..." class="tex" name="q">
     </form>
@@ -295,7 +295,7 @@ C250  PLAIN GRATING, QDPK-004, HMCC40EN2, HMCC50EN2, HMCC620EN2 Supplier
 
 
 
-                            <form action="/index.php/Content/Pagedis/Inquiry.html" method="post">
+                            <form action="mailto:info@cangzhou-qinghong-foundry.com.cn" method="post" onsubmit="return qhInquiry(this)" enctype="text/plain">
 
 
 
@@ -601,10 +601,8 @@ C250  PLAIN GRATING, QDPK-004, HMCC40EN2, HMCC50EN2, HMCC620EN2 Supplier
 
 
 						    </div>
-
-
-
-                            </form>
+<p style="margin-top:12px;font-size:13px;color:#666;">Or e-mail us directly at <a href="mailto:info@cangzhou-qinghong-foundry.com.cn">info@cangzhou-qinghong-foundry.com.cn</a></p>
+</form>
 
 
 
@@ -736,8 +734,8 @@ C250  PLAIN GRATING, QDPK-004, HMCC40EN2, HMCC50EN2, HMCC620EN2 Supplier
     <div class="footer_left">
       <div class="title"> Navigation</div>
       <ul class="ftx_ul2">
-        <li> <a href="../index.htm"> Home </a
-        <li> <a href="../about-us/index.htm"> A@cangzhou-qinghong-foundry.com.cn="../products@cangzhou-qinghong-foundry.com.cni><li> <a href="../news/index.htm"> News </a> </li><li> <a href="../Process/index.htm"> Process </a> </li><li> <a href="../service/index.htm"> Service </a> </li><li> <a href="../contact-us/index.htm"> Contact Us </a> </li>      </ul>
+        <li> <a href="../index.htm"> Home </a> </li>
+        <li> <a href="../about-us/index.htm"> About Us </a> </li><li> <a href="../products/index.htm"> Products </a> </li><li> <a href="../news/index.htm"> News </a> </li><li> <a href="../Process/index.htm"> Process </a> </li><li> <a href="../service/index.htm"> Service </a> </li><li> <a href="../contact-us/index.htm"> Contact Us </a> </li>      </ul>
     </div>
     <div class="footer_center">
       <div class="title"> <a href="../contact-us/index.htm"> Contact Us </a> </div>
@@ -747,7 +745,7 @@ C250  PLAIN GRATING, QDPK-004, HMCC40EN2, HMCC50EN2, HMCC620EN2 Supplier
         <li> Fax: +86 317 8095 688 </li>
         <li> E-mail: <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> E-mail: <a href="mailto:ruqiang.li@cangzhou-qinghong-foundry.com.cn"> ruqiang.li@cangzhou-qinghong-foundry.com.cn</a> </li>
-        <li> E-mail: <a href="mailto:baoqing.zhao@cangzhou-qinghong-foundry.com.cn"> baoqing.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
+        <li> E-mail: <a href="mailto:info@cangzhou-qinghong-foundry.com.cn"> info@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> Add: Xinjianboli Village, Wangwu Town, Botou City, Hebei China </li>
       </ul>
     </div>
@@ -821,6 +819,48 @@ $.get("/index.php?g=Demo&m=Index&a=arp&modelid=" + mod + "&zxurl="+dxurl+"&title
 
 
 
+
+<script>
+function qhInquiry(f) {
+  var d = {}, pro = [], els = f.elements, i, e;
+  for (i = 0; i < els.length; i++) {
+    e = els[i];
+    if (!e.name) continue;
+    if (e.type === 'checkbox') { if (e.checked) pro.push(e.value); continue; }
+    if (e.type === 'submit' || e.type === 'button' || e.type === 'hidden') continue;
+    d[e.name] = String(e.value || '').replace(/[\r\n]+/g, ' ').trim();
+  }
+  if (!d.email && !d.full_name) {
+    alert('Please enter your name and e-mail address.');
+    return false;
+  }
+  var lines = [];
+  if (d.full_name) lines.push('Name: ' + d.full_name);
+  if (d.company_name) lines.push('Company: ' + d.company_name);
+  if (d.email) lines.push('E-mail: ' + d.email);
+  if (d.tel) lines.push('Tel: ' + d.tel);
+  if (d.from_country) lines.push('Country: ' + d.from_country);
+  lines.push('Page: ' + document.title + ' (' + location.href + ')');
+  if (pro.length) lines.push('Products of interest: ' + pro.join(', '));
+  lines.push('');
+  if (d.msg) lines.push(d.msg);
+  var subject = pro.length ? 'Product inquiry - ' + document.title : 'Website inquiry - ' + document.title;
+  window.location.href = 'mailto:info@cangzhou-qinghong-foundry.com.cn?subject=' + encodeURIComponent(subject) +
+                         '&body=' + encodeURIComponent(lines.join('\n'));
+  return false;
+}
+</script>
+
+<script>
+function qhSearch(f) {
+  var i = f.querySelector('input[name="q"]');
+  var q = i ? i.value.replace(/^\s+|\s+$/g, '') : '';
+  if (!q) return false;
+  window.location.href = 'https://www.google.com/search?q=' +
+    encodeURIComponent('site:cangzhou-qinghong-foundry.com.cn ' + q);
+  return false;
+}
+</script>
 </body>
 
 

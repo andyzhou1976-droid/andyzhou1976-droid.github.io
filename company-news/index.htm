@@ -113,7 +113,7 @@
 <div class="header_top fix">
   <div class="wp fix">
     <p class="l"> <span> +86 317 8091 666 </span> <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn </a> </p>
-    <form action="/index.php/Search/index/index.html" class="header_form fix r">
+    <form action="https://www.google.com/search" class="header_form fix r" onsubmit="return qhSearch(this)">
       <input type="submit" class="sub">
       <input type="text" placeholder="Search..." class="tex" name="q">
     </form>
@@ -259,7 +259,7 @@
         <li> Fax: +86 317 8095 688 </li>
         <li> E-mail: <a href="mailto:jun.zhao@cangzhou-qinghong-foundry.com.cn"> jun.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> E-mail: <a href="mailto:ruqiang.li@cangzhou-qinghong-foundry.com.cn"> ruqiang.li@cangzhou-qinghong-foundry.com.cn</a> </li>
-        <li> E-mail: <a href="mailto:baoqing.zhao@cangzhou-qinghong-foundry.com.cn"> baoqing.zhao@cangzhou-qinghong-foundry.com.cn</a> </li>
+        <li> E-mail: <a href="mailto:info@cangzhou-qinghong-foundry.com.cn"> info@cangzhou-qinghong-foundry.com.cn</a> </li>
         <li> Add: Xinjianboli Village, Wangwu Town, Botou City, Hebei China </li>
       </ul>
     </div>
@@ -328,5 +328,17 @@ var proarttitle = 'Company News';
 var mod = '1';
 
 $.get("/index.php?g=Demo&m=Index&a=arp&modelid=" + mod + "&zxurl="+dxurl+"&title="+proarttitle);
+</script>
+
+
+<script>
+function qhSearch(f) {
+  var i = f.querySelector('input[name="q"]');
+  var q = i ? i.value.replace(/^\s+|\s+$/g, '') : '';
+  if (!q) return false;
+  window.location.href = 'https://www.google.com/search?q=' +
+    encodeURIComponent('site:cangzhou-qinghong-foundry.com.cn ' + q);
+  return false;
+}
 </script>
 </body></html>
